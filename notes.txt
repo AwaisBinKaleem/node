@@ -1,0 +1,20 @@
+https://roadmap.sh/
+
+npm pkgs in this course:
+    prompt-sync:    <take input from CLI>
+    express:        <this is server of node js runtime env>
+    nodemon:        <this is live server to auto reload server on file changes>
+        syntex/command: nodemon <filename> ; eg: nodemon server.js
+    chance
+
+//github onetime config:
+    start git bash and run:
+        ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+    C:\Users\Awais Kaleem\.ssh
+        id_rsa      <private-key>
+        id_rsa.pub  <public-key>    open with notepad copy key and add to github account
+    git config --global user.name "John Doe"
+    git config --global user.email johndoe@example.com
+
+    you can check if configured succesfully by this command:
+        git config --global user.email
