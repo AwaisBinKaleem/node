@@ -13,12 +13,7 @@ app.use(express.json());
 
 let response = [];
 let id = 0;
-
-app.get("/", (req, res) => {
-  res.status(200).send("welcome to node js server.powered py express js");
-});
-
-app.get("/getData", async (req, res) => {
+const getMockData = () => {
   for (let i = 1; i <= 10; i++) {
     id++;
     response.push({
@@ -34,7 +29,15 @@ app.get("/getData", async (req, res) => {
       },
     });
   }
-  await res.status(200).send(response);
+  return response;
+};
+
+app.get("/", (req, res) => {
+  res.status(200).send("welcome to node js server.powered py express js");
+});
+
+app.get("/getData", async (req, res) => {
+  await res.status(200).send(getMockData());
 });
 
 app.get("/login", (req, res) => {
