@@ -41,6 +41,11 @@ app.get("/getData", async (req, res) => {
 });
 
 app.get("/login", (req, res) => {
+  const resData = services.loginToUser();
+  res.status(200).send(resData);
+});
+
+app.get("/signup", (req, res) => {
   const resData = services.signup();
   res.status(200).send(resData);
 });

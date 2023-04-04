@@ -1,12 +1,5 @@
 https://roadmap.sh/
 
-npm pkgs in this course:
-    prompt-sync:    <take input from CLI>
-    express:        <this is server of node js runtime env>
-    nodemon:        <this is live server to auto reload server on file changes>
-        syntex/command: nodemon <filename> ; eg: nodemon server.js
-    chance
-
 //github onetime config:
     start git bash and run:
         ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
@@ -18,3 +11,23 @@ npm pkgs in this course:
 
     you can check if configured succesfully by this command:
         git config --global user.email
+
+//npm pkgs in this course:
+    prompt-sync:    <take input from CLI>
+    express:        <this is server of node js runtime env>
+    nodemon:        <this is live server to auto reload server on file changes>
+        syntex/command: nodemon <filename> ; eg: nodemon server.js
+    chance:
+        generate getMockData for testing purpose
+    CORS:
+        a middleware used to allow cross origen to hit server endpoints
+    AXIOS:
+        this package is used to call an API intigrated to frontend
+    Body-Parser:
+
+//useful terms to remember:
+    CORS
+    CDN
+    Response
+    Status Codes
+    Request

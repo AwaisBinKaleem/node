@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js"
+      integrity="sha512-LUKzDoJKOLqnxGWWIBM4lzRBlxcva2ZTztO8bTcWPmDSpkErWx0bSP4pdsjNH8kiHAUPaT06UXcb+vOEZH+HpQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+  <body>
+    <ul id="myList"></ul>
+    <script>
+      let list = document.getElementById("myList");
+      let listItem = "";
+      axios
+        .get("http://localhost:3000/getData")
+        .then(function (response) {
+          let data = response.data;
+          data.forEach((item) => {
+            listItem += `<li>${item.name}</li>`;
+          });
+          list.innerHTML = listItem;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    </script>
+  </body>
+</html>
