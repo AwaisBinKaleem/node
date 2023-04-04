@@ -5,3 +5,4 @@
 - run project in to current folder by following command
   `nodemon server.js`
 - hit server using `localhost:3000`
+- for further detail check file `notes.txt`
