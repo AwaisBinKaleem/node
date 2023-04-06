@@ -40,6 +40,16 @@ app.get("/getData", async (req, res) => {
   await res.status(200).send(getMockData());
 });
 
+app.post("/getData/:id", async (req, res) => {
+  console.log(req.query);
+  let id = parseInt(req.params.id);
+  let user = {};
+  user = response.find((item) => {
+    return item.id === id;
+  });
+  await res.status(200).send(user);
+});
+
 app.get("/login", (req, res) => {
   const resData = services.loginToUser();
   res.status(200).send(resData);

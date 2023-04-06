@@ -31,3 +31,6 @@ https://roadmap.sh/
     Response
     Status Codes
     Request
+        Path Params
+        Query Params
+        Request Body / payload

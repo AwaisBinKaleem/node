@@ -9,22 +9,14 @@
     ></script>
   </head>
   <body>
+    <button onclick="getData2()">getData</button>
     <ul id="myList"></ul>
-    <script>
-      let list = document.getElementById("myList");
-      let listItem = "";
-      axios
-        .get("http://localhost:3000/getData")
-        .then(function (response) {
-          let data = response.data;
-          data.forEach((item) => {
-            listItem += `<li>${item.name}</li>`;
-          });
-          list.innerHTML = listItem;
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    </script>
+    <table id="myTable">
+      <!-- <tr>
+        <td id="myId">id</td>
+        <td id="myName">name</td>
+      </tr> -->
+    </table>
+    <script src="./script.js"></script>
   </body>
 </html>
