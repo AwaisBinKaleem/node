@@ -17,12 +17,14 @@ function getData() {
 
 function showDetail(userId) {
   axios
-    .get(`http://localhost:3000/getData/${userId}`)
+    .post(`http://localhost:3000/getData/${userId}`)
     .then(function (response) {
       console.log(response);
       window.alert(response.data.id + response.data.name);
     });
 }
+
+showDetail(1);
 
 function getData2() {
   let table = document.getElementById("myTable");
@@ -32,7 +34,7 @@ function getData2() {
     .get("http://localhost:3000/getData")
     .then(function (response) {
       let data = response.data;
-      //   console.log(data);
+      console.log(data);
       data.forEach((item) => {
         tableRow += `<tr onclick="showDetail(${item.id})">
           <td id="myId">${item.id}</td>
@@ -44,4 +46,8 @@ function getData2() {
     .catch(function (error) {
       console.log(error);
     });
+}
+
+function getweather() {
+  axios.get("");
 }

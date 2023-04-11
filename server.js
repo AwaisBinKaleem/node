@@ -1,12 +1,14 @@
 const express = require("express");
 const chance = require("chance")();
 const cors = require("cors");
+const bodyParser = require("body-parser");
 const app = express();
 
 const services = require("./services");
 
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.json({ type: "application/*+json" }));
 
 // data =
 //   "data can be in any formate, string,integers,objects,lists,json,files,html etc";
@@ -50,14 +52,16 @@ app.post("/getData/:id", async (req, res) => {
   await res.status(200).send(user);
 });
 
-app.get("/login", (req, res) => {
-  const resData = services.loginToUser();
+app.post("/login", (req, res) => {
+  const body = req.body;
+  const resData = services.loginToUser(body);
   res.status(200).send(resData);
 });
 
-app.get("/signup", (req, res) => {
-  const resData = services.signup();
-  res.status(200).send(resData);
+app.post("/signup", (req, res) => {
+  const body = req.body;
+  const resData = services.signup(body);
+  res.status(200).send();
 });
 
 app.listen(3000);

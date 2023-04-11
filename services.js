@@ -1,9 +1,13 @@
-const loginToUser = () => {
+const loginToUser = (data) => {
   //code here
-  return "login succesfully";
+  if (data.email) {
+    return "login succesfully";
+  } else {
+    return "data not found";
+  }
 };
 
-const signup = () => {
+const signup = (data) => {
   //code here
   return "user created succesfully";
 };
