@@ -3,7 +3,6 @@ const chance = require("chance")();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const app = express();
-
 const services = require("./services");
 
 app.use(cors());
@@ -34,7 +33,7 @@ const getMockData = () => {
   return response;
 };
 
-app.get("/", (req, res) => {
+app.get("/", async(req, res) => {
   res.status(200).send("welcome to node js server.powered py express js");
 });
 
@@ -52,9 +51,9 @@ app.post("/getData/:id", async (req, res) => {
   await res.status(200).send(user);
 });
 
-app.post("/login", (req, res) => {
+app.post("/login",async (req, res) => {
   const body = req.body;
-  const resData = services.loginToUser(body);
+  const resData = await services.loginToUser(body);
   res.status(200).send(resData);
 });
 
@@ -64,4 +63,4 @@ app.post("/signup", (req, res) => {
   res.status(200).send();
 });
 
-app.listen(3000);
+app.listen(3001);

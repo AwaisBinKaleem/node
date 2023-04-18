@@ -1,15 +1,34 @@
-const loginToUser = (data) => {
-  //code here
-  if (data.email) {
-    return "login succesfully";
-  } else {
-    return "data not found";
-  }
+const {databse} = require('./configs');
+const mysql = require('mysql2/promise');
+
+const loginToUser = async (body) => {
+  const con = await mysql.createConnection(databse)
+  // let row = {}
+
+  const [rows,fields] = await con.execute('select email from user where `email`=? and `password`=?',
+  [body.email,body.password]
+  // (err,res)=>{
+  //   if(err) return 'can not login';
+  //   if(res.length>0){
+  //     row = {...res[0]}
+  //   }
+  //   return row
+  // }
+  )
+  return rows[0]
+  con.end()
 };
 
-const signup = (data) => {
-  //code here
-  return "user created succesfully";
+const signup =async (body) => {
+  const con = await mysql.createConnection(databse)
+  con.query('insert into user (id,name,email,password) values (?,?,?,?)',
+  [body.id,body.name,body.email,body.password],
+  (err,result)=>{
+    if(err) return "unable to signup"
+    return "user created succesfully";
+  }
+  )
+  return "ok"
 };
 
 module.exports = { loginToUser, signup };
