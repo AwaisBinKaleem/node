@@ -5,7 +5,7 @@ const loginToUser = async (body) => {
   const con = await mysql.createConnection(databse)
   // let row = {}
 
-  const [rows,fields] = await con.execute('select email from user where `email`=? and `password`=?',
+  const [rows,fields] = await con.execute('select id from user where `email`=? and `password`=?',
   [body.email,body.password]
   // (err,res)=>{
   //   if(err) return 'can not login';
@@ -15,7 +15,7 @@ const loginToUser = async (body) => {
   //   return row
   // }
   )
-  return rows[0]
+    return rows
   con.end()
 };
 
@@ -31,4 +31,14 @@ const signup =async (body) => {
   return "ok"
 };
 
-module.exports = { loginToUser, signup };
+const deleteUser =async (id) => {
+  const con = await mysql.createConnection(databse)
+  const [rows,fields] = await con.execute('DELETE from user where id = ?',[id])
+  if(rows.affectedRows){
+    return true
+  }else{
+    return false
+  }
+};
+
+module.exports = { loginToUser, signup, deleteUser };

@@ -54,12 +54,22 @@ app.post("/getData/:id", async (req, res) => {
 app.post("/login",async (req, res) => {
   const body = req.body;
   const resData = await services.loginToUser(body);
-  res.status(200).send(resData);
+  if(resData.length>0){
+    res.status(200).send(resData[0]);
+  }else{
+    res.status(404).send(resData)
+  }
 });
 
 app.post("/signup", (req, res) => {
   const body = req.body;
   const resData = services.signup(body);
+  res.status(200).send();
+});
+
+app.delete("/user/:id", async (req, res) => {
+  const id = parseInt(req.params.id);
+  const resData = await services.deleteUser(id);
   res.status(200).send();
 });
 

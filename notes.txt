@@ -24,6 +24,7 @@ https://roadmap.sh/
     AXIOS:
         this package is used to call an API intigrated to frontend
     Body-Parser:
+    mysql2/promise:
 
 //useful terms to remember:
     Middlewares
