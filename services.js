@@ -1,5 +1,6 @@
 const {databse} = require('./configs');
 const mysql = require('mysql2/promise');
+const mockData = require("./data");
 
 const loginToUser = async (body) => {
   const con = await mysql.createConnection(databse)
@@ -41,4 +42,20 @@ const deleteUser =async (id) => {
   }
 };
 
-module.exports = { loginToUser, signup, deleteUser };
+const populate_database =async () => {
+  const con = await mysql.createConnection(databse)
+  mockData.mockData.forEach(async (user)=>{
+    const [rows,fields] = await con.execute('insert into user (name,email,password) values (?,?,?)',[user.name,user.email,'abc123'])
+  })
+  return
+};
+
+const getAllUsers =async (pageNo) => {
+  const con = await mysql.createConnection(databse)
+    const pageSize = 10;
+    const offset = (pageNo - 1) * pageSize;
+    const [rows,fields] = await con.execute(`select * from user limit ${pageSize} offset ${offset}`)
+    console.log('-->',rows)
+    return rows
+};
+module.exports = { loginToUser, signup, deleteUser, populate_database,getAllUsers};

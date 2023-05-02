@@ -73,4 +73,17 @@ app.delete("/user/:id", async (req, res) => {
   res.status(200).send();
 });
 
+// app.post("/populateDatabase", async (req, res) => {
+  //   await services.populate_database()
+  //   res.status(200).send();
+  // });
+  
+  app.post("/users", async (req, res) => {
+    const body = req.body;
+    console.log(body)
+    const resData = await services.getAllUsers(body.pageNo);
+    res.status(200).send(resData);
+  });
+
+
 app.listen(3001);
