@@ -1,6 +1,7 @@
 const {databse} = require('./configs');
 const mysql = require('mysql2/promise');
 const mockData = require("./data");
+const utils = require("./utilities");
 
 const loginToUser = async (body) => {
   const con = await mysql.createConnection(databse)
@@ -52,9 +53,12 @@ const populate_database =async () => {
 
 const getAllUsers =async (pageNo) => {
   const con = await mysql.createConnection(databse)
-    const pageSize = 10;
-    const offset = (pageNo - 1) * pageSize;
-    const [rows,fields] = await con.execute(`select * from user limit ${pageSize} offset ${offset}`)
+    
+    let sql = `select * from user`;
+    
+    sql = utils.applyPagination(sql,pageNo)
+
+    const [rows,fields] = await con.execute(sql)
     console.log('-->',rows)
     return rows
 };

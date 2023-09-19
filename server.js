@@ -1,13 +1,20 @@
 const express = require("express");
+const app = express();
+const server = require('http').Server(app);
+const io = require('socket.io')(server,{path:'/socket'});
+
 const chance = require("chance")();
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const app = express();
+
 const services = require("./services");
 
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json({ type: "application/*+json" }));
+
+app.set('view engine', 'ejs');
+app.use(express.static('public'));
 
 // data =
 //   "data can be in any formate, string,integers,objects,lists,json,files,html etc";
@@ -34,7 +41,7 @@ const getMockData = () => {
 };
 
 app.get("/", async(req, res) => {
-  res.status(200).send("welcome to node js server.powered py express js");
+  res.render("welcome", {greetings:"welcome to node js server.powered py express js"});
 });
 
 app.get("/getData", async (req, res) => {
@@ -85,5 +92,14 @@ app.delete("/user/:id", async (req, res) => {
     res.status(200).send(resData);
   });
 
-
-app.listen(3001);
+  io.on("connection", (socket) => {
+    console.log("A user connected");
+  
+    // Handle events and logic here
+  
+    socket.on("disconnect", () => {
+      console.log("A user disconnected");
+    });
+  });
+  
+server.listen(3001);
