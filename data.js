@@ -516,6 +516,6 @@ const search = (q) => {
   });
   return found;
 };
-console.log(search(10));
+// console.log(search(10));
 
 module.exports = {mockData}

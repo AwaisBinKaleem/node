@@ -7,13 +7,16 @@
     <script>
         const welcomeMessage = "<%= greetings %>"
     </script>
-    <script src="/socket.io/socket.io.js"></script>
+    <script type="module">
+        import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js";
+        const socket = io("ws://127.0.0.1:5000",{path:'/socket/'});
+    </script>
 </head>
 <body>
     <p id="msg">welcome</p>
 </body>
-</html>
 <script defer>
     const msg = document.getElementById("msg")
     msg.innerHTML = welcomeMessage
 </script>
+</html>
