@@ -9,15 +9,16 @@ const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: "*",
-    methods: ['GET']
+    origin: "*", //urls to be allowed
+    // methods: ['GET','POST'],
+    // allowedHeaders: ["Access-Control-Allow-Origin"]
   },
   path: "/socket/",
 });
 
 const services = require("./services");
 
-// app.use(cors());
+app.use(cors({origin: '*'}));
 app.use(express.json());
 app.use(bodyParser.json({ type: "application/*+json" }));
 
