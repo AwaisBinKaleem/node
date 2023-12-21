@@ -53,7 +53,6 @@ const getMockData = () => {
 app.get("/", async (req, res) => {
   const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
   console.log(geoip.lookup(ip))
-  // console.log(geoip.lookup('39.45.6.216'))
   res.render("welcome", {
     greetings: "welcome to node js server.powered py express js"
   });
